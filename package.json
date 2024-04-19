@@ -1,0 +1,17 @@
+{
+  "name": "test-ps-list",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "DEBUG=true node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ps-list": "^8.1.1"
+  }
+}

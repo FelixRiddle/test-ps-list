@@ -49,6 +49,20 @@ export async function nodeProcesses(callback) {
 }
 
 /**
+ * Get app name
+ */
+export function fetchAppName(directory) {
+    const packageFile = `${directory}/package.json`;
+    
+    let packageJson = fs.readFileSync(packageFile);
+    let packageJsonData = JSON.parse(packageJson);
+    
+    const appName = packageJsonData.name;
+    
+    return appName;
+}
+
+/**
  * Get node processes with cwd
  * 
  * The problem with this one is that it gets processes randomly one by one.
@@ -67,6 +81,10 @@ export async function randomAccessNodeProcesses(callback) {
                 return callback(proc);
             } else {
                 proc.cwd = res;
+                
+                // Also fetch app name, this will be very useful for terminating apps in general-frontend
+                const appName = fetchAppName(proc.cwd);
+                proc.name = appName;
                 
                 return callback(proc);
             }
@@ -102,6 +120,10 @@ export function forcedAwaitCwdRetrieval(processes, callback) {
                 return awaitCallback(proc);
             } else {
                 proc.cwd = res;
+                
+                // Also fetch app name, this will be very useful for terminating apps in general-frontend
+                const appName = fetchAppName(proc.cwd);
+                proc.name = appName;
                 
                 return awaitCallback(proc);
             }

@@ -1,7 +1,7 @@
 {
   "name": "test-ps-list",
   "version": "1.0.0",
-  "description": "",
+  "description": "Test ps list is a project to test the package 'ps-list'",
   "type": "module",
   "main": "index.js",
   "scripts": {
